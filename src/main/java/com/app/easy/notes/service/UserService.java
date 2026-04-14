@@ -5,6 +5,9 @@ import com.app.easy.notes.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 public class UserService implements UserDetailsService {
     UserRepository userRepository;
@@ -14,6 +17,11 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserEntity loadUserByUsername(String username){
-        return userRepository.getByUsername(username);
+        Optional<UserEntity> user = userRepository.getByUsername(username);
+        if(user.isPresent()){
+            return user.get();
+        }else{
+            throw new NoSuchElementException();
+        }
     }
 }
