@@ -35,7 +35,7 @@ public class AuthService {
         UserEntity user = (UserEntity) authentication.getPrincipal();
         String jwt = authUtil.generateJwtToken(user.getUsername());
 
-        return new AuthResponse(user.getName(), user.getUsername(), jwt);
+        return new AuthResponse(user.getId(),user.getName(), user.getUsername(), jwt);
     }
 
     public Boolean signUp(SignupRequestDto request){

@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "user_table")
 public class UserEntity implements UserDetails {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,6 +26,14 @@ public class UserEntity implements UserDetails {
         this.name=name;
         this.password=password;
         this.username=username;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
